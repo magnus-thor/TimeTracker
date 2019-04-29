@@ -5,7 +5,7 @@ class CreateTasks < ActiveRecord::Migration[5.2]
     create_table :tasks do |t|
       t.string :title
       t.text :description
-      t.float :duration, default: 0
+      t.integer :duration, default: 0
 
       t.timestamps
     end

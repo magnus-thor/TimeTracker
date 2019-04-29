@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_04_25_131409) do
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.float "duration", default: 0.0
+    t.integer "duration", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
