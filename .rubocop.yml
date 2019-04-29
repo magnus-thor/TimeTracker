@@ -731,3 +731,6 @@ RSpec/EmptyLineAfterSubject:
 
 RSpec/NamedSubject:
   Enabled: false
+
+RSpec/RepeatedDescription:
+  Enabled: false
