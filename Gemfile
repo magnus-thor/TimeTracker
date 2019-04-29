@@ -27,4 +27,5 @@ group :test do
   gem "rspec-rails"
   gem "shoulda-matchers", "~> 3.1", ">= 3.1.2"
   gem "database_cleaner", "~> 1.6", ">= 1.6.2"
+  gem "rspec-graphql_matchers"
 end
