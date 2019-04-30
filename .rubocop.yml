@@ -1,6 +1,8 @@
 # See https://github.com/bbatsov/rubocop/blob/master/config/default.yml
 
-require: rubocop-rspec
+require:
+  - rubocop-performance
+  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 2.6
@@ -39,7 +41,7 @@ Performance/ReverseEach:
   Reference: "https://github.com/JuanitoFatas/fast-ruby#enumerablereverseeach-vs-enumerablereverse_each-code"
   Enabled: true
 
-Performance/Sample:
+Style/Sample:
   Description: "Use `sample` instead of `shuffle.first`, `shuffle.last`, and `shuffle[Fixnum]`."
   Reference: "https://github.com/JuanitoFatas/fast-ruby#arrayshufflefirst-vs-arraysample-code"
   Enabled: true
@@ -274,7 +276,7 @@ Layout/ConditionPosition:
 Layout/DefEndAlignment:
   Enabled: true
 
-Layout/IndentArray:
+Layout/IndentFirstArrayElement:
   Enabled: false
   # Or the following isn't allowed
   # foo([
@@ -313,7 +315,7 @@ Layout/FirstMethodArgumentLineBreak:
 Layout/FirstMethodParameterLineBreak:
   Enabled: true
 
-Layout/FirstParameterIndentation:
+Layout/IndentFirstArgument:
   Enabled: true
 
 Layout/DotPosition:

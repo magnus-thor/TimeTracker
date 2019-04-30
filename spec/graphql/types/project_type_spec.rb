@@ -12,6 +12,6 @@ RSpec.describe Types::ProjectType do
   end
 
   it "has a :description field of String type" do
-    expect(subject).to have_field(:description).that_returns(!types.String)
+    expect(subject).to have_field(:description).that_returns(types.String)
   end
 end

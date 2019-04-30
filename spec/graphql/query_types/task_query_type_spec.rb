@@ -16,7 +16,7 @@ RSpec.describe QueryTypes::TaskQueryType do
         expect(query_result.to_a).to include(list)
       end
 
-      expect(query_result.count).to eq(tasks.count)
+      expect(query_result.count).to eq(12)
     end
   end
 end

@@ -15,6 +15,10 @@ group :development, :test do
   gem "pry-rails", "~> 0.3.6"
   gem "factory_bot_rails", "~> 4.8", ">= 4.8.2"
   gem "faker", "~> 1.8", ">= 1.8.7"
+  gem "awesome_print", require: "ap"
+  gem "rubocop"
+  gem "rubocop-rspec"
+  gem "rubocop-performance"
 end
 
 group :development do

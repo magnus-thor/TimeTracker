@@ -11,9 +11,12 @@ RSpec.describe QueryTypes::ProjectQueryType do
 
     it "returns all our created projects lists" do
       query_result = subject.fields["projects"].resolve(nil, nil, nil)
-
-      projects.each do |project|
+      projects.each_with_index do |project, index|
         expect(query_result.to_a).to include(project)
+
+        project.tasks.each do |task|
+          expect(query_result.to_a[index].tasks).to include(task)
+        end
       end
 
       expect(query_result.count).to eq(projects.count)
