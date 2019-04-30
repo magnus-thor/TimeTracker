@@ -6,7 +6,8 @@ module Types
     root_type.description = "The query root"
     root_type.interfaces = []
     root_type.fields = Util::FieldCombiner.combine([
-      QueryTypes::TasksQueryType
+      QueryTypes::TaskQueryType,
+      QueryTypes::ProjectQueryType
     ])
   end
 end

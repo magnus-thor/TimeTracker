@@ -5,5 +5,6 @@ FactoryBot.define do
     sequence(:title) { |n| "#{Faker::Lorem.word}-#{n}" }
     description { Faker::Lorem.paragraph }
     duration { Random.new.rand(100..10_000) }
+    project
   end
 end

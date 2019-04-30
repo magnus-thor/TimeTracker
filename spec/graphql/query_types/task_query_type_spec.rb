@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.describe QueryTypes::TasksQueryType do
+RSpec.describe QueryTypes::TaskQueryType do
   types = GraphQL::Define::TypeDefiner.instance
   let(:tasks) { create_list(:task, 3) }
 
   describe "querying all tasks list" do
-    it "has a :tasks that returns a ToDoList type" do
+    it "has a :tasks that returns a Task type" do
       expect(subject).to have_field(:tasks).that_returns(types[Types::TaskType])
     end
 
