@@ -7,12 +7,30 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Project.destroy_all
 Task.destroy_all
+
+2.times do
+  Project.create(
+    name: Faker::Lorem.word,
+    description: Faker::Lorem.paragraph
+  )
+end
 
 10.times do
   Task.create(
     title: Faker::Lorem.word,
     description: Faker::Lorem.paragraph,
-    duration: Random.new.rand(100..10_000)
+    duration: Random.new.rand(100..10_000),
+    project: Project.all.first
+  )
+end
+
+10.times do
+  Task.create(
+    title: Faker::Lorem.word,
+    description: Faker::Lorem.paragraph,
+    duration: Random.new.rand(100..10_000),
+    project: Project.all.last
   )
 end
