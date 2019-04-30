@@ -9,5 +9,9 @@ module Types
     field :title, !types.String
     field :description, !types.String
     field :duration, !types.Float
+    field :project do
+      type ProjectType
+      resolve -> (obj, args, ctx) { obj.project }
+    end
   end
 end
