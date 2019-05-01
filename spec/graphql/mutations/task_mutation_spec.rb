@@ -12,11 +12,28 @@ RSpec.describe Mutations::TaskMutation do
       }
     end
 
-    it "increases todo lists by 1" do
+    it "increases tasks by 1" do
       expect(Task.count).to eq 3
       subject.fields["create_task"].resolve(nil, args, nil)
       expect(Task.count).to eq 4
       expect(Task.last.title).to eq "Some random title"
     end
   end
+
+  describe 'editing a task' do
+    let!(:task) { create(:task, title: 'Old title') }
+
+    it 'updates a task' do
+      args = {
+        id: task.id,
+        title: 'I am a new task title'
+      }
+
+      query_result = Mutations::TaskMutation.fields['edit_task'].resolve(nil, args, nil)
+
+      expect(query_result.title).to eq(args[:title])
+      expect(Task.count).to eq 4
+    end
+  end
+
 end
