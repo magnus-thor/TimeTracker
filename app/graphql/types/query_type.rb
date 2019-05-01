@@ -21,4 +21,3 @@ end
 #     QueryTypes::ProjectQueryType
 #   ])
 # end
-

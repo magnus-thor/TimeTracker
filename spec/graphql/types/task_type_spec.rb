@@ -16,6 +16,6 @@ RSpec.describe Types::TaskType do
   end
 
   it "has a :duration field of String type" do
-    expect(subject).to have_field(:duration).that_returns(!types.Float)
+    expect(subject).to have_field(:duration).that_returns(!types.Int)
   end
 end

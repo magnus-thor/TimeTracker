@@ -8,10 +8,10 @@ module Types
     field :id, !types.ID
     field :title, !types.String
     field :description, !types.String
-    field :duration, !types.Float
+    field :duration, !types.Int
     field :project do
       type ProjectType
-      resolve -> (obj, args, ctx) { obj.project }
+      resolve ->(obj, _args, _ctx) { obj.project }
     end
   end
 end
