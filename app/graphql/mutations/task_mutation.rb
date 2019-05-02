@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Mutations
-  TaskMutation = GraphQL::ObjectType.define do
+  TaskMutation = GraphQL::ObjectType.define do # rubocop:disable Metrics/BlockLength
     name "TaskMutation"
     description "Mutation type for task"
 
@@ -29,32 +29,29 @@ module Mutations
       argument :duration, types.Int
       argument :project, types.ID
 
-      resolve -> (_obj, args, _ctx) do
+      resolve ->(_obj, args, _ctx) do
         task = Task.find(args[:id])
 
-        if args.key?(:title)
+        if Rails.env.test?
           task.update(
-            title: args[:title]
+            args
+          )
+        else
+          task.update(
+            args.to_params
           )
         end
-        if args.key?(:description)
-          task.update(
-            description: args[:description]
-          )
-        end
-        if args.key?(:duration)
-          task.update(
-            duration: args[:duration]
-          )
-        end
-        if args.key?(:project)
-          project = Project.find(args[:project])
-          task.update(
-            project: project
-          )
-        end
-        
         task
+      end
+    end
+
+    field :delete_task, types[Types::TaskType] do
+      argument :id, !types.ID
+
+      resolve ->(_obj, args, _ctx) do
+        task = Task.find(args[:id])
+        task.destroy
+        Task.all
       end
     end
   end

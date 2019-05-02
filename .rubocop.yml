@@ -736,3 +736,6 @@ RSpec/NamedSubject:
 
 RSpec/RepeatedDescription:
   Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
