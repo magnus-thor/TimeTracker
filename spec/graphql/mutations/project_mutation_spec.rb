@@ -5,7 +5,7 @@ RSpec.describe Mutations::ProjectMutation do
     let(:args) do
       {
         name: "Some random name",
-        description: "Some description",
+        description: "Some description"
       }
     end
 
@@ -29,7 +29,7 @@ RSpec.describe Mutations::ProjectMutation do
       query_result = subject.fields["edit_project"].resolve(nil, args, nil)
 
       expect(query_result.name).to eq(args[:name])
-      expect(project.count).to eq 4
+      expect(Project.count).to eq 1
     end
   end
 

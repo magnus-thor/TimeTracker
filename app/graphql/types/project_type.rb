@@ -9,7 +9,8 @@ module Types
     field :name, !types.String
     field :description, types.String
 
-    field :tasks, types[Types::TaskType] do
+    field :tasks do
+      type TaskType
       resolve ->(obj, _args, _ctx) { obj.tasks }
     end
   end

@@ -3,7 +3,7 @@
 module Mutations
   TaskMutation = GraphQL::ObjectType.define do # rubocop:disable Metrics/BlockLength
     name "TaskMutation"
-    description "Mutation type for task"
+    description "Mutations for task"
 
     field :create_task, Types::TaskType do
       argument :title, !types.String
