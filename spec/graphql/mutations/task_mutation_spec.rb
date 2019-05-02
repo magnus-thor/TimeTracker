@@ -29,7 +29,7 @@ RSpec.describe Mutations::TaskMutation do
         title: "I am a new task title"
       }
 
-      query_result = Mutations::TaskMutation.fields["edit_task"].resolve(nil, args, nil)
+      query_result = subject.fields["edit_task"].resolve(nil, args, nil)
 
       expect(query_result.title).to eq(args[:title])
       expect(Task.count).to eq 4
