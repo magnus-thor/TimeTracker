@@ -15,6 +15,7 @@ module Mutations
     end
 
     field :edit_project, Types::ProjectType do
+      argument :id, !types.ID
       argument :name, types.String
       argument :description, types.String
 
@@ -31,6 +32,14 @@ module Mutations
           )
         end
         project
+      end
+    end
+
+    field :delete_project, Types::ProjectType do
+      argument :id, types.ID
+
+      resolve ->(_obj, args, _ctx) do
+        Project.destroy(args[:id])
       end
     end
   end

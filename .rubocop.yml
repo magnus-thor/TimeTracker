@@ -215,9 +215,10 @@ Metrics/BlockLength:
   Enabled: true
   Exclude:
     - tolken.gemspec
-    - spec/**/*
+    - spec/**/**/*
     - Rakefile
     - bin/setup
+  ExcludedMethods: ['GraphQL::ObjectType.define']
 
 Metrics/PerceivedComplexity:
   Enabled: true

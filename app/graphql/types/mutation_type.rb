@@ -6,7 +6,8 @@ module Types
     root_type.description = "The mutation root"
     root_type.interfaces = []
     root_type.fields = Util::FieldCombiner.combine([
-      Mutations::TaskMutation
+      Mutations::TaskMutation,
+      Mutations::ProjectMutation
     ])
   end
 end

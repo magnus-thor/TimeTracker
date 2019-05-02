@@ -43,7 +43,7 @@ RSpec.describe Mutations::ProjectMutation do
       }
       query = subject.fields["delete_project"].resolve(nil, args, nil)
 
-      expect(query).not_to include(project1)
+      expect(query).to eq project1
     end
 
     it "reduces the number of projects by one" do
@@ -52,7 +52,7 @@ RSpec.describe Mutations::ProjectMutation do
       }
       subject.fields["delete_project"].resolve(nil, args, nil)
 
-      expect(project.count).to eq 7
+      expect(Project.count).to eq 1
     end
   end
 end

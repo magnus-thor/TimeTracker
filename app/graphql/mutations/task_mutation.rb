@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Mutations
-  TaskMutation = GraphQL::ObjectType.define do # rubocop:disable Metrics/BlockLength
+  TaskMutation = GraphQL::ObjectType.define do
     name "TaskMutation"
     description "Mutations for task"
 
