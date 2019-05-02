@@ -19,4 +19,21 @@ RSpec.describe QueryTypes::TaskQueryType do
       expect(query_result.count).to eq(12)
     end
   end
+
+  describe "querying a specific task" do
+    it "returns the queried task" do
+      task = tasks[0]
+      args = { id: task.id }
+      query_result = subject.fields["task"].resolve(nil, args, nil)
+
+      expect(query_result).to eq task
+    end
+
+    it "returns error message if task is not found" do
+      args = { id: 100 }
+      query_result = subject.fields["task"].resolve(nil, args, nil)
+      expected_result = { errors: "Task not found" }
+      expect(query_result).to eq expected_result
+    end
+  end
 end
