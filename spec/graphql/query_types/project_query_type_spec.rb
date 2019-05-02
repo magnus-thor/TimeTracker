@@ -22,4 +22,21 @@ RSpec.describe QueryTypes::ProjectQueryType do
       expect(query_result.count).to eq(projects.count)
     end
   end
+
+  describe "querying a specific project" do
+    it "returns the queried project" do
+      project = projects[0]
+      args = { id: project.id }
+      query_result = subject.fields["project"].resolve(nil, args, nil)
+
+      expect(query_result).to eq project
+    end
+
+    it "returns error message if project is not found" do
+      args = { id: 100 }
+      query_result = subject.fields["project"].resolve(nil, args, nil)
+      expected_result = {errors: "Project not found"}
+      expect(query_result).to eq expected_result
+    end
+  end
 end

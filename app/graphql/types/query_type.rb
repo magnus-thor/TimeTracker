@@ -11,13 +11,3 @@ module Types
     ])
   end
 end
-
-# class Types::QueryType < Types::BaseObject
-#   name "Query"
-#   description "The query root"
-#   interfaces []
-#   fields Util::FieldCombiner.combine([
-#     QueryTypes::TaskQueryType,
-#     QueryTypes::ProjectQueryType
-#   ])
-# end
