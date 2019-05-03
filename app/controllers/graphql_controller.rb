@@ -7,7 +7,7 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: current_user
     }
     result = TimeTrackerSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
@@ -42,5 +42,14 @@ class GraphqlController < ApplicationController
     logger.error error.backtrace.join("\n")
 
     render json: { error: { message: error.message, backtrace: error.backtrace }, data: {} }, status: :internal_server_error
+  end
+
+  def current_user
+    return nil if request.headers["HTTP_AUTHORIZATION"].blank?
+
+    token = request.headers["HTTP_AUTHORIZATION"].split(" ").last
+    return nil if token.blank?
+
+    AuthToken.verify(token)
   end
 end

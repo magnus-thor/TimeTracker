@@ -218,6 +218,7 @@ Metrics/BlockLength:
     - spec/**/**/*
     - Rakefile
     - bin/setup
+    - db/seeds.rb
   ExcludedMethods: ['GraphQL::ObjectType.define']
 
 Metrics/PerceivedComplexity:
