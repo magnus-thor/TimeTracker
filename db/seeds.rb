@@ -9,6 +9,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Project.destroy_all
 Task.destroy_all
+User.destroy_all
+
+User.create email: "maggi@heima.co", password: "password", password_confirmation: "password", first_name: "Magnus", last_name: "Thor"
 
 2.times do
   Project.create(

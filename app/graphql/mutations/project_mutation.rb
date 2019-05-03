@@ -22,15 +22,11 @@ module Mutations
       resolve ->(_obj, args, _ctx) do
         project = Project.find(args[:id])
 
-        if Rails.env.test?
-          project.update(
-            args
-          )
-        else
-          project.update(
-            args.to_params
-          )
-        end
+        args = args.to_params unless Rails.env.test?
+        project.update(
+          args
+        )
+
         project
       end
     end

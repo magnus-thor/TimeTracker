@@ -32,15 +32,11 @@ module Mutations
       resolve ->(_obj, args, _ctx) do
         task = Task.find(args[:id])
 
-        if Rails.env.test?
-          task.update(
-            args
-          )
-        else
-          task.update(
-            args.to_params
-          )
-        end
+        args = args.to_params unless Rails.env.test?
+        task.update(
+          args
+        )
+
         task
       end
     end
