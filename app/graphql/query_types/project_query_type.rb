@@ -3,7 +3,7 @@
 module QueryTypes
   ProjectQueryType = GraphQL::ObjectType.define do
     name "ProjectQueryType"
-    description "Returns all projects"
+    description "Returns projects"
 
     field :projects, types[Types::ProjectType], "returns all projects" do
       resolve ->(_obj, _args, ctx) do

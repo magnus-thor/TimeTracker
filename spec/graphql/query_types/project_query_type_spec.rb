@@ -3,6 +3,8 @@
 RSpec.describe QueryTypes::ProjectQueryType do
   types = GraphQL::Define::TypeDefiner.instance
   let(:projects) { create_list(:project, 5) }
+  let(:user) { create(:user) }
+  let(:context) { { current_user: user } }
 
   describe "querying all projects list" do
     it "has a :projects that returns a Project type" do
@@ -10,7 +12,7 @@ RSpec.describe QueryTypes::ProjectQueryType do
     end
 
     it "returns all our created projects lists" do
-      query_result = subject.fields["projects"].resolve(nil, nil, nil)
+      query_result = subject.fields["projects"].resolve(nil, nil, context)
       projects.each_with_index do |project, index|
         expect(query_result.to_a).to include(project)
 
@@ -27,15 +29,15 @@ RSpec.describe QueryTypes::ProjectQueryType do
     it "returns the queried project" do
       project = projects[0]
       args = { id: project.id }
-      query_result = subject.fields["project"].resolve(nil, args, nil)
+      query_result = subject.fields["project"].resolve(nil, args, context)
 
       expect(query_result).to eq project
     end
 
     it "returns error message if project is not found" do
       args = { id: 100 }
-      query_result = subject.fields["project"].resolve(nil, args, nil)
-      expected_result = { errors: "Project not found" }
+      query_result = subject.fields["project"].resolve(nil, args, context)
+      expected_result = GraphQL::ExecutionError.new("No Project with ID 100 found.")
       expect(query_result).to eq expected_result
     end
   end

@@ -3,7 +3,7 @@
 module QueryTypes
   TaskQueryType = GraphQL::ObjectType.define do
     name "TaskQueryType"
-    description "Returns all tasks"
+    description "Returns tasks"
 
     field :tasks, types[Types::TaskType], "returns all task" do
       resolve ->(_obj, _args, _ctx) { Task.all }
@@ -12,9 +12,13 @@ module QueryTypes
     field :task, Types::TaskType do
       argument :id, !types.ID
       resolve ->(_obj, args, _ctx) do
-        task = Task.find_by(id: args[:id])
-        task.nil? ? { errors: "Task not found" } : task
-      end
+                task = Task.find(args[:id])
+                task
+              rescue ActiveRecord::RecordNotFound
+                GraphQL::ExecutionError.new("No Task with ID #{args[:id]} found.")
+              rescue ActiveRecord::RecordInvalid => e
+                GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(", ")}")
+              end
     end
   end
 end

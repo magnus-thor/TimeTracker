@@ -32,7 +32,7 @@ RSpec.describe QueryTypes::TaskQueryType do
     it "returns error message if task is not found" do
       args = { id: 100 }
       query_result = subject.fields["task"].resolve(nil, args, nil)
-      expected_result = { errors: "Task not found" }
+      expected_result = GraphQL::ExecutionError.new("No Task with ID 100 found.")
       expect(query_result).to eq expected_result
     end
   end

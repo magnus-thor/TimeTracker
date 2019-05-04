@@ -6,7 +6,7 @@ class AuthToken
   end
 
   def self.token(user)
-    payload = { user_id: user.id, exp: 30.minutes.from_now.to_i }
+    payload = { user_id: user.id, exp: 24.hours.from_now.to_i }
     JsonWebToken.sign(payload, key: key)
   end
 
