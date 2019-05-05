@@ -6,5 +6,6 @@ FactoryBot.define do
     description { Faker::Lorem.paragraph }
     duration { Random.new.rand(100..10_000) }
     project
+    user
   end
 end
