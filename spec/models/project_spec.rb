@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe Project, type: :model do
@@ -19,5 +21,4 @@ RSpec.describe Project, type: :model do
     it { is_expected.to have_many :user_projects }
     it { is_expected.to have_many(:users).through(:user_projects) }
   end
-
 end

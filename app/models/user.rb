@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :password_digest, presence: true
   validates :email, presence: true, uniqueness: true, format: VALID_EMAIL_REGEX
 
-  has_many :user_projects
+  has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects
-  has_many :tasks
+  has_many :tasks, dependent: :delete
 end

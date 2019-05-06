@@ -11,14 +11,26 @@ module Mutations
       argument :duration, !types.Int
       argument :project, !types.ID
 
-      resolve ->(_obj, args, _ctx) do
+      resolve ->(_obj, args, ctx) do
+        raise GraphQL::ExecutionError, "Authentication required" if ctx[:current_user].blank?
+
         project = Project.find(args[:project])
+
+        user = User.find(args[:user])
+        return GraphQL::ExecutionError.new("Authentication required") if ctx.nil? || ctx[:current_user].nil?
+
         Task.create(
           title: args[:title],
           description: args[:description],
           duration: args[:duration],
-          project: project
+          project: project,
+          user: user
         )
+
+              rescue ActiveRecord::RecordNotFound => e
+                GraphQL::ExecutionError.new(e.message)
+              rescue ActiveRecord::RecordInvalid => e
+                GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(", ")}")
       end
     end
 
