@@ -12,7 +12,7 @@ blocks:
         - name: time-tracker-be
       env_vars:
         - name: time-tracker-be
-          value: https://git.heroku.com/semaphore-demoapp.git
+          value: https://git.heroku.com/time-tracker-be.git
       jobs:
         - name: Push code
           commands:
