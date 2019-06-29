@@ -2,7 +2,7 @@
 
 class AuthToken
   def self.key
-    Rails.application.secrets.secret_key_base
+    Rails.application.credentials.auth_token
   end
 
   def self.token(user)
