@@ -22,6 +22,7 @@ RSpec.describe QueryTypes::ProjectQueryType do
       end
 
       expect(query_result.count).to eq(projects.count)
+      expect(query_result[0].tasks.count).to eq 3
     end
   end
 
@@ -39,6 +40,14 @@ RSpec.describe QueryTypes::ProjectQueryType do
       query_result = subject.fields["project"].resolve(nil, args, context)
       expected_result = GraphQL::ExecutionError.new("No Project with ID 100 found.")
       expect(query_result).to eq expected_result
+    end
+
+    it 'returns all the tasks that belong to that project' do
+      project = projects[0]
+      args = { id: project.id }
+      query_result = subject.fields["project"].resolve(nil, args, context)
+
+      expect(query_result.tasks.count).to eq 3
     end
   end
 end
