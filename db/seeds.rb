@@ -11,7 +11,7 @@ Project.destroy_all
 Task.destroy_all
 User.destroy_all
 
-User.create email: "maggi@heima.co", password: "password", first_name: "Magnus", last_name: "Thor"
+user = User.create email: "maggi@heima.co", password: "password", first_name: "Magnus", last_name: "Thor"
 
 2.times do
   Project.create(
@@ -25,15 +25,7 @@ end
     title: Faker::Lorem.word,
     description: Faker::Lorem.paragraph,
     duration: Random.new.rand(100..10_000),
-    project: Project.all.first
-  )
-end
-
-10.times do
-  Task.create(
-    title: Faker::Lorem.word,
-    description: Faker::Lorem.paragraph,
-    duration: Random.new.rand(100..10_000),
-    project: Project.all.last
+    project: Project.all.first,
+    user: user
   )
 end
