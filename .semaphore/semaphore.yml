@@ -53,6 +53,8 @@ blocks:
           value: 127.0.0.1
         - name: PGUSER
           value: postgres
+      secrets:
+        - name: rails_master-key
       # This block runs two jobs in parallel and they both share common
       # setup steps. We can group them in a prologue.
       # See https://docs.semaphoreci.com/article/50-pipeline-yaml#prologue
