@@ -9,13 +9,13 @@ module Types
     field :first_name, !types.String
     field :last_name, !types.String
 
-    # field :rentals, !types[Types::RentalType] do
-    #   preload :rentals
-    #   resolve -> (obj, args, ctx) { obj.rentals }
-    # end
-    # field :bookings, !types[Types::BookingType] do
-    #   preload :bookings
-    #   resolve -> (obj, args, ctx) { obj.bookings }
-    # end
+    field :tasks, !types[Types::TaskType] do
+      # preload :tasks
+      resolve -> (obj, args, ctx) { obj.tasks }
+    end
+    field :projects, !types[Types::ProjectType] do
+      # preload :projects
+      resolve -> (obj, args, ctx) { obj.projects }
+    end
   end
 end

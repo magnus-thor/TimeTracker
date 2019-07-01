@@ -42,7 +42,7 @@ RSpec.describe QueryTypes::ProjectQueryType do
       expect(query_result).to eq expected_result
     end
 
-    it 'returns all the tasks that belong to that project' do
+    it "returns all the tasks that belong to that project" do
       project = projects[0]
       args = { id: project.id }
       query_result = subject.fields["project"].resolve(nil, args, context)

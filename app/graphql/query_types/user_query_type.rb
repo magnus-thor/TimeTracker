@@ -16,10 +16,10 @@ module QueryTypes
     field :user, Types::UserType do
       argument :id, !types.ID
       resolve ->(_obj, args, ctx) do
-                return GraphQL::ExecutionError.new("Authentication required") if ctx.nil? || ctx[:current_user].nil?
+              return GraphQL::ExecutionError.new("Authentication required") if ctx.nil? || ctx[:current_user].nil?
 
-                user = User.find(args[:id])
-                user
+              user = User.find(args[:id])
+              user
               rescue ActiveRecord::RecordNotFound
                 GraphQL::ExecutionError.new("No user with ID #{args[:id]} found.")
               rescue ActiveRecord::RecordInvalid => e
