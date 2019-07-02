@@ -11,11 +11,11 @@ module Types
 
     field :tasks, !types[Types::TaskType] do
       # preload :tasks
-      resolve -> (obj, args, ctx) { obj.tasks }
+      resolve ->(obj, _args, _ctx) { obj.tasks }
     end
     field :projects, !types[Types::ProjectType] do
       # preload :projects
-      resolve -> (obj, args, ctx) { obj.projects }
+      resolve ->(obj, _args, _ctx) { obj.projects }
     end
   end
 end
